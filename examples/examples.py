@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
 import sys
 sys.path.append( '../' )
 
@@ -344,7 +345,7 @@ def MakeExample7() :
     return doc
 
 def OpenFile( name ) :
-    return file( '%s.rtf' % name, 'w' )
+    return open( '%s.rtf' % name, 'w' )
 
 if __name__ == '__main__' :
     DR = Renderer()
@@ -365,4 +366,4 @@ if __name__ == '__main__' :
     DR.Write( doc6, OpenFile( '6' ) )
     DR.Write( doc7, OpenFile( '7' ) )
 
-    print "Finished"
+    print("Finished")

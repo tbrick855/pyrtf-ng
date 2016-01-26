@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import sys
 sys.path.append( '../' )
@@ -23,9 +24,9 @@ def MakeExample1() :
     section.append( 'Or you can use the image object to convert the image and then '
                     'save it to a raw code element that can be included later.' )
 
-    fout = file( 'image_tmp.py', 'w' )
-    print >> fout, 'from rtfng import RawCode'
-    print >> fout
+    fout = open( 'image_tmp.py', 'w' )
+    fout.write( 'from rtfng import RawCode\n')
+    fout.write('\n')
     fout.write( image.ToRawCode( 'TEST_IMAGE' ) )
     fout.close()
 
@@ -52,5 +53,5 @@ if __name__ == '__main__' :
 
     DR.Write( doc1, OpenFile( 'Image1' ) )
 
-    print "Finished"
+    print("Finished")
 
