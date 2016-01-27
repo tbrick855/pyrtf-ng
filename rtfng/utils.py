@@ -3,7 +3,7 @@ Utility functions for rtf-ng.
 """
 import os
 from unittest import TestCase
-from StringIO import StringIO
+from io import StringIO
 
 from rtfng.Elements import Document, Section
 

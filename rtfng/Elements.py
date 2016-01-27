@@ -1,11 +1,11 @@
-from types import IntType, FloatType, LongType, StringTypes
+#from types import IntType, FloatType, LongType, StringTypes
 from copy import deepcopy
-from binascii import hexlify
+#from binascii import hexlify
 
-from Renderer import Renderer
-from Constants import *
-from Styles import *
-from PropertySets import StandardColours, StandardFonts, StandardPaper
+from .Renderer import Renderer
+from .Constants import *
+from .Styles import *
+from .PropertySets import StandardColours, StandardFonts, StandardPaper
 
 from rtfng.document.base import TAB, LINE, RawCode
 from rtfng.document.section import Section
