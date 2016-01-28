@@ -80,6 +80,22 @@ def MakeExample2() :
     section.append( p )
 
     p = Paragraph()
+    p.append( 'We can specify styles on text like: ',
+              TEXT('bold', bold=True),
+              ' or ',
+              TEXT('italic', italic=True),
+              ' or ',
+              TEXT('underline', underline=True),
+              '.' )
+    section.append( p )
+
+    p = Paragraph()
+    p.append( 'We can also have hyperlinks like ',
+            TEXT('google', hyperlink='http://www.google.com'),
+              ' in a paragraph.' )
+    section.append( p )
+
+    p = Paragraph()
     p.append( 'The paragraph itself can also be overridden in lots of ways, tabs, '
               'borders, alignment, etc can all be modified either in the style or as an '
               'override during the creation of the paragraph. '

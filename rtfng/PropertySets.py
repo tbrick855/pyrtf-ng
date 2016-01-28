@@ -317,7 +317,7 @@ class TextPropertySet:
 
     def __init__(self, font=None, size=None, bold=False, italic=False,
                  underline=False, colour=None, frame=None, expansion=None,
-                 unicodeText=False):
+                 unicodeText=False, hyperlink=None):
         self.font = font
         self.size = size
         self.unicode = unicodeText
@@ -331,6 +331,7 @@ class TextPropertySet:
         self.doubleUnderline = False
         self.wordUnderline = False
         self.expansion = expansion
+        self.hyperlink = hyperlink
 
     def Copy(self):
         return deepcopy(self)

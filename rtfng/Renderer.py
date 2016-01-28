@@ -220,6 +220,9 @@ class Renderer:
         settings.append(textProps.size, 'fs%s')
         settings.append(self._colour_map.get(textProps.colour, False), 'cf%s')
 
+        if textProps.hyperlink:
+            settings.append(textProps.hyperlink, 'field{\\*\\fldinst HYPERLINK "%s"}{\\fldrslt ')
+
         if textProps.frame:
             frame = textProps.frame
             settings.append('chbrdr')
@@ -529,6 +532,11 @@ class Renderer:
             self.WriteCustomElement(self, text_elem.Data)
 
         if overrides: self._write('}')
+
+        # force an extra closing tag on hyperlinks
+        if text_elem.Properties.hyperlink:
+            self._write('}')
+
 
     def WriteInlineElement(self, inline_elem):
         overrides = Settings()

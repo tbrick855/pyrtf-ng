@@ -42,6 +42,7 @@ def TEXT(*params, **kwargs):
     textProps.italic = kwargs.get('italic', False)
     textProps.underline = kwargs.get('underline', False)
     textProps.colour = kwargs.get('colour', None)
+    textProps.hyperlink = kwargs.get('hyperlink', None)
 
     if len(params) == 1:
         return Text(params[0], textProps)
