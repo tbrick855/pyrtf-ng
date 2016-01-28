@@ -20,10 +20,15 @@ class Image( RawCode ) :
 
         im = PIL_Image.open(file_name)
         im.thumbnail((500,500), PIL_Image.ANTIALIAS)
-        pict_type = self.PICT_TYPES[im.format.lower()]
         width = im.width
         height = im.height
-        im.save(file_name)
+
+        # if image not in supported format try to convert it
+        file_format = im.format.lower()
+        if file_format not in self.PICT_TYPES:
+            file_format = 'png'
+        im.save(file_name, file_format.upper())
+        pict_type = self.PICT_TYPES[file_format]
         im.close()
 
         codes = [ pict_type,
