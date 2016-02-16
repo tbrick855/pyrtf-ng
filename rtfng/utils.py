@@ -3,7 +3,7 @@ Utility functions for rtf-ng.
 """
 import os
 from unittest import TestCase
-from io import StringIO
+import six
 
 from rtfng.Elements import Document, Section
 
@@ -73,7 +73,7 @@ class RTFTestCase(TestCase):
         fh = open(os.path.join(self.sourceDir, name + '.rtf'))
         data = fh.read()
         fh.close()
-        return data
+        return data.strip()
 
     def getTestName(self):
         if hasattr(self, '_testMethodName'):
@@ -81,7 +81,7 @@ class RTFTestCase(TestCase):
         return self._TestCase__testMethodName.split('test_')[1]
 
     def getTestData(self, doc):
-        result = StringIO()
+        result = six.StringIO()
         doc.write(result)
         testData = result.getvalue()
         result.close()
@@ -99,5 +99,6 @@ class RTFTestCase(TestCase):
 
     def doTest(self):
         testData, refData = self.getData()
+        #self.assertEqual.__self__.maxDiff = None
         self.assertEqual(testData, refData)
 

@@ -1,4 +1,4 @@
-#from types import StringType, UnicodeType
+from six import string_types
 
 from .PropertySets import (
     ParagraphPropertySet, TabPropertySet, ShadingPropertySet,
@@ -286,7 +286,8 @@ class Renderer:
         #  I left it here so that I remember to do the right thing when I have time
         #----------------------------------
 
-        if params: data = data % params
+        if params:
+            data = data % params
         self._fout.write(data)
 
     def _WriteDocument(self):
@@ -485,10 +486,10 @@ class Renderer:
         self._write(r'%s\pard\plain%s %s%s ' % (opening, tag_prefix, self._CurrentStyle, overrides))
 
         for element in paragraph_elem:
-            if isinstance(element, str):
-                self._write(element)
-            #elif isinstance(element, UnicodeType):
-            #    self.writeUnicodeElement(element)
+            if isinstance(element, string_types):
+                self._write(''.join(
+                    map(lambda x: r'\u%04d?' % ord(x) if ord(x) > 127 else x, element))
+                )
             elif isinstance(element, RawCode):
                 self._write(element.Data)
             elif isinstance(element, Text):
@@ -505,10 +506,6 @@ class Renderer:
                 raise Exception('Don\'t know how to handle %s' % element)
         self._write(tag_suffix + closing)
 
-    def writeUnicodeElement(self, element):
-        text = ''.join([r'\u%s?' % str(ord(e)) for e in element])
-        self._write(text or '')
-
     def WriteRawCode(self, raw_elem):
         self._write(raw_elem.Data)
 
@@ -518,12 +515,14 @@ class Renderer:
         self._RendTextPropertySet   (text_elem.Properties, overrides)
         self._RendShadingPropertySet(text_elem.Shading, overrides, 'ch')
 
-        #    write the wrapper and then let the custom handler have a go
+        # write the wrapper and then let the custom handler have a go
         if overrides: self._write('{%s ' % repr(overrides))
 
-        #    if the data is just a string then we can now write it
+        # if the data is just a string then we can now write it
         if isinstance(text_elem.Data, str):
-            self._write(text_elem.Data or '')
+            # check for characters outside of ascii since everything is unicode now
+            element = ''.join(map(lambda x: r'\u%04d?' % ord(x) if ord(x) > 127 else x, text_elem.Data))
+            self._write(element or '')
 
         elif text_elem.Data == TAB:
             self._write(r'\tab ')
