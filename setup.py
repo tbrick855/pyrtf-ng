@@ -24,20 +24,20 @@ setup(name = 'pyrtf-ng',
     version = open('VERSION').read().strip(),
     author = 'Duncan McGreggor',
     author_email = 'oubiwann@adytum.us',
-    url = 'http://code.google.com/p/pyrtf-ng/',
+    url = 'https://github.com/tbrick855/pyrtf-ng.git',
     license = 'MIT',
     platforms = ['Any'],
     description = doclines[0],
     long_description = '\n'.join( doclines[2:]),
     keywords = ('RTF', 'Rich Text', 'Rich Text Format', 'documents',
         'word'),
+    classifiers = [
+        'Development Status :: 4 - Beta',
+        'Topic :: Text Editors :: Text Processing',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        'Intended Audience :: Developers',
+        'Programming Language :: Python',
+        'License :: OSI Approved :: MIT',
+        ],
     packages = findPackages(),
-    classifiers = [f.strip() for f in """
-        Development Status :: 4 - Beta
-        Topic :: Text Editors :: Text Processing
-        Topic :: Software Development :: Libraries :: Python Modules
-        Intended Audience :: Developers
-        Programming Language :: Python
-        License :: OSI Approved :: MIT
-        """]
     )
