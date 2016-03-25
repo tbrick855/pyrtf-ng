@@ -1,3 +1,8 @@
+2016.02.16
+
+* Ported to python3
+* couldn't get test/test_all to run.  py.test just works without though
+
 2009.12.18
 
 * Updated the admin script to use the new bzr-svn plugin syntax.

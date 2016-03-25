@@ -21,7 +21,7 @@ def findPackages():
     return packages
 
 setup(name = 'pyrtf-ng',
-    version = open('VERSION').read().strip(),
+    version = '0.9.3',
     author = 'Duncan McGreggor',
     author_email = 'oubiwann@adytum.us',
     url = 'https://github.com/tbrick855/pyrtf-ng.git',

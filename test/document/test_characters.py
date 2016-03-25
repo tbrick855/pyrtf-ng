@@ -27,6 +27,23 @@ class CharacterTestCase(RTFTestCase):
     def test_charStyleOverride(self):
         self.doTest()
 
+    def make_hyperlinks():
+        doc, section, styles = RTFTestCase.initializeDoc()
+        p = Paragraph()
+        p.append('This is a standard paragraph with the default style.')
+        p = Paragraph()
+        p.append('This is also a standard paragraph. ',
+                  'But lets add a ',
+                  TEXT('Washington Post', hyperlink='https://washingtonpost.com'),
+                  ' hyperlink to this paragraph. ',
+                  )
+        section.append(p)
+        return doc
+    make_hyperlinks = staticmethod(make_hyperlinks)
+
+    def test_hyperlinks(self):
+        self.doTest()
+
     def make_charColours():
         doc, section, styles = RTFTestCase.initializeDoc()
         section.append('This example test changing the colour of fonts.')

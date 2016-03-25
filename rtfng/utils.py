@@ -100,5 +100,8 @@ class RTFTestCase(TestCase):
     def doTest(self):
         testData, refData = self.getData()
         #self.assertEqual.__self__.maxDiff = None
+        if testData != refData:
+            with open('testData', 'w') as f:
+                f.write(testData)
         self.assertEqual(testData, refData)
 
